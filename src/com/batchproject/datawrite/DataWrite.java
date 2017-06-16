@@ -1,13 +1,14 @@
 package com.batchproject.datawrite;
 
-import java.io.BufferedWriter;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 
 public class DataWrite implements Runnable {
 	BlockingQueue<ResultSet> resultSets;
-	BufferedWriter writer;
-	public DataWrite(BlockingQueue<ResultSet> resultSets, BufferedWriter writer) {
+	PrintWriter writer;
+	public DataWrite(BlockingQueue<ResultSet> resultSets, PrintWriter writer) {
 		super();
 		this.resultSets = resultSets;
 		this.writer = writer;
@@ -15,20 +16,22 @@ public class DataWrite implements Runnable {
 	@Override
 	public void run() {
 		try {
+			//TODO synchronize write to file
 			writeToFile(resultSets.take());
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
 	}
 	
 	private void writeToFile(ResultSet rs) {
 		try {
 			while (rs.next()) {
-				
-			} 
-		} catch (Exception e) {
-			// TODO: handle exception
+				writer.println(rs.getInt(1) + "," + rs.getString(2) + "," + rs.getDate(3));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
