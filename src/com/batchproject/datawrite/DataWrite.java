@@ -15,13 +15,14 @@ public class DataWrite implements Runnable {
 	}
 	@Override
 	public void run() {
-		try {
-			//TODO synchronize write to file
-			writeToFile(resultSets.take());
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			//TODO synchronize write to file
+//			writeToFile(resultSets.take());
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		System.out.println("Hello");
 	}
 	
 	private void writeToFile(ResultSet rs) {

@@ -8,6 +8,8 @@ import java.util.Properties;
 public final class Config {
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
+	
+	static String sql = "select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= {} and trace_audit_no <= {};";
 
 	private Config() {
 		// Can't make instance

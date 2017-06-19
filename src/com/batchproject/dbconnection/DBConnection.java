@@ -10,7 +10,6 @@ public final class DBConnection {
 	
 	static {
 		JDBC_DRIVER = Config.getStringValue("driver");
-		
 		StringBuilder url = new StringBuilder(Config.getStringValue("url"));
 		url.append("user=" + Config.getStringValue("username") + ";");
 		url.append("password" + Config.getStringValue("password") + ";");
