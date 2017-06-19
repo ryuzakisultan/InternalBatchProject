@@ -2,5 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="lib/tomcat-jdbc.jar" sourcepath="C:/Users/sahmed07/AppData/Local/Temp/decompiler/source/tomcat-jdbc-8.0.26-sources.jar"/>
+	<classpathentry kind="lib" path="lib/tomcat-juli.jar"/>
+	<classpathentry kind="lib" path="lib/disruptor-3.3.2.jar"/>
+	<classpathentry kind="lib" path="lib/ifxjdbc.jar"/>
+	<classpathentry kind="lib" path="lib/ifxlang.jar"/>
+	<classpathentry kind="lib" path="lib/ifxlsupp.jar"/>
+	<classpathentry kind="lib" path="lib/ifxtools.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
