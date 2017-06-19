@@ -44,6 +44,7 @@ public final class DBConnection {
 	public static Connection getConnection() {
 		try {
 			con = datasource.getConnection();
+			con.setAutoCommit(false);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
