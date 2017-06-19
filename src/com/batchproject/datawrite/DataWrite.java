@@ -27,6 +27,7 @@ public class DataWrite implements Runnable {
 	private void writeToFile(ResultSet rs) {
 		try {
 			while (rs.next()) {
+				//TODO change csv if required
 				writer.println(rs.getInt(1) + "," + rs.getString(2) + "," + rs.getDate(3));
 			}
 		} catch (SQLException e) {
