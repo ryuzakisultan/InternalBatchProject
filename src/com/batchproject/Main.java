@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import com.batchproject.config.Config;
+import com.batchproject.data.RecordSet;
 import com.batchproject.datawrite.DataWrite;
 import com.batchproject.dbconnection.DBConnection;
 import com.batchproject.fetch.DataFetch;
@@ -24,10 +25,8 @@ public class Main {
 	static int totalBatches;
 	static PrintWriter writer;
 	static String sql = "select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;";
-	static String outputFileName = "output1.csv";
-	private static BlockingQueue<ResultSet> resultSets = new LinkedBlockingQueue<ResultSet>();
-	private static ConcurrentHashMap<ResultSet, Connection> rsCon = new ConcurrentHashMap<ResultSet,Connection>();
-	private static ConcurrentHashMap<ResultSet, PreparedStatement> rsPs = new ConcurrentHashMap<ResultSet, PreparedStatement>();
+	static String outputFileName = "output.csv";
+	private static BlockingQueue<RecordSet> recordSets = new LinkedBlockingQueue<RecordSet>();
 	
 	public static void main(String[] args) {
 		try {
@@ -54,10 +53,10 @@ public class Main {
 				int end = lower+batchSize;
 				for (int i = 0; i < totalBatches; ++i) {
 					Connection con = DBConnection.getConnection();
-					executor.execute(new DataFetch(con,resultSets,rsCon,rsPs,sql,start,Math.min(end,upper)));
+					executor.execute(new DataFetch(con,recordSets,sql,start,Math.min(end,upper)));
 					start = end + 1;
 					end = end + batchSize;
-					executor.execute(new DataWrite(resultSets,rsCon,rsPs, writer));
+					executor.execute(new DataWrite(recordSets, writer));
 				}
 				executor.shutdown();
 				while (!executor.isTerminated()) {
