@@ -8,13 +8,12 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.batchproject.Main;
+import com.batchproject.exceptions.ConfigPropertyNotFound;
 
 public final class Config {
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
 	
-	static String sql = "select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= {} and trace_audit_no <= {};";
 	private static final Logger log = LogManager.getLogger(Config.class.getName());
 	
 	private Config() {
@@ -23,47 +22,44 @@ public final class Config {
 
 	static {
 		try {
-			// TODO Logging
 			input = new FileInputStream("config.properties");
 			prop.load(input);
-		} catch (IOException ex) {
-			// TODO Logging
-			ex.printStackTrace();
+		} catch (IOException e) {
+			log.error(e,e);
 		} finally {
 			if (input != null) {
 				try {
 					input.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e,e);
 				}
 			}
 		}
 	}
 
-	public static String getStringValue(String key) {
+	public static String getStringValue(String key) throws ConfigPropertyNotFound {
 		String value = null;
 		value = prop.getProperty(key);
 		if (value == null) {
-			//TODO handle null pointer exception
+			throw new ConfigPropertyNotFound(key);
 		}
-		// TODO Logging
+		//TODO Logging
 		return value;
 
 	}
 
-	public static int getIntValue(String key) {
+	public static int getIntValue(String key) throws ConfigPropertyNotFound{
 		int value = 0;
 
 		try {
 			String s = prop.getProperty(key);
 			if (s == null) {
-				//TODO handle null pointer exception
+				throw new ConfigPropertyNotFound(key);
 			}
 			value = Integer.parseInt(s);
 			// TODO Logging
 		} catch (NumberFormatException e) {
-			// TODO: handle exception
+			log.error(e,e);
 		}
 		return value;
 	}

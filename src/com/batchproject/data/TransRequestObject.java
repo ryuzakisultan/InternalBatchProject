@@ -6,8 +6,6 @@ import java.sql.Date;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.batchproject.Main;
-
 public class TransRequestObject {
 	private static final Logger log = LogManager.getLogger(TransRequestObject.class.getName());
 	
@@ -32,6 +30,5 @@ public class TransRequestObject {
 	
 	public void writeToFile(PrintWriter writer) {
 		writer.println(traceAuditNo + "," + cardPrgID + "," + transDate);
-		System.out.println(traceAuditNo + "," + cardPrgID + "," + transDate);
 	}
 }

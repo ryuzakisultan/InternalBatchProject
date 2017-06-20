@@ -2,30 +2,32 @@ package com.batchproject.dbconnection;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
-import com.batchproject.Main;
 import com.batchproject.config.Config;
+import com.batchproject.exceptions.ConfigPropertyNotFound;
 
 public final class DBConnection {
 	//Database driver and url
-	private static final String JDBC_DRIVER;
-	private static final String DB_URL;
+	private static String JDBC_DRIVER = null;
+	private static String DB_URL = null;
 	private static DataSource datasource;
 	private static Connection con = null;
 	private static final Logger log = LogManager.getLogger(DBConnection.class.getName());
 	
-	
 	static {
-		JDBC_DRIVER = Config.getStringValue("driver");
-		StringBuilder url = new StringBuilder(Config.getStringValue("url"));
-		url.append("user=" + Config.getStringValue("user") + ";");
-		url.append("password=" + Config.getStringValue("password") + ";");
-		DB_URL = url.toString();
+		try {
+			JDBC_DRIVER = Config.getStringValue("driver");
+			StringBuilder url = new StringBuilder(Config.getStringValue("url"));
+			url.append("user=" + Config.getStringValue("user") + ";");
+			url.append("password=" + Config.getStringValue("password") + ";");
+			DB_URL = url.toString();
+		} catch (ConfigPropertyNotFound e) {
+			log.error(e,e);
+		}
 	}
 	
 	static {
@@ -40,7 +42,6 @@ public final class DBConnection {
 	}
 	
 	private DBConnection() {
-		
 	}
 	
 	public static Connection getConnection() {
@@ -48,8 +49,7 @@ public final class DBConnection {
 			con = datasource.getConnection();
 			con.setAutoCommit(false);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e,e);
 		}
 		return con;
 	}

@@ -6,7 +6,6 @@ import java.util.concurrent.BlockingQueue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.batchproject.Main;
 import com.batchproject.data.RecordSet;
 
 public class DataWrite implements Runnable {
@@ -24,8 +23,7 @@ public class DataWrite implements Runnable {
 			//TODO synchronize write to file
 			recordSets.take().writeToFile(writer);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e,e);
 		}
 	}
 }

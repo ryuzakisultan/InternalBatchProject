@@ -9,7 +9,6 @@ import java.util.concurrent.BlockingQueue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.batchproject.Main;
 import com.batchproject.data.RecordSet;
 
 public class DataFetch implements Runnable {
@@ -24,7 +23,7 @@ public class DataFetch implements Runnable {
 	private static final Logger log = LogManager.getLogger(DataFetch.class.getName());
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		//TODO run comments
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, low);
@@ -35,31 +34,27 @@ public class DataFetch implements Runnable {
 			recordSets.add(recordSet);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e,e);
 		} finally {
 			if (rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e,e);
 				}
 			}
 			if (ps != null) {
 				try {
 					ps.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e,e);
 				}
 			}
 			if (con != null) {
 				try {
 					con.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					log.error(e,e);
 				}
 			}
 		}
