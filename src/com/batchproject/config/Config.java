@@ -5,12 +5,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.batchproject.Main;
+
 public final class Config {
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
 	
 	static String sql = "select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= {} and trace_audit_no <= {};";
-
+	private static final Logger log = LogManager.getLogger(Config.class.getName());
+	
 	private Config() {
 		// Can't make instance
 	}

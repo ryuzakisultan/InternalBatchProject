@@ -10,5 +10,7 @@
 	<classpathentry kind="lib" path="lib/ifxlang.jar"/>
 	<classpathentry kind="lib" path="lib/ifxlsupp.jar"/>
 	<classpathentry kind="lib" path="lib/ifxtools.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-api-2.3.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-core-2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

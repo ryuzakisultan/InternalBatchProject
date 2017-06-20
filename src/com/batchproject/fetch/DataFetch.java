@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.batchproject.Main;
 import com.batchproject.data.RecordSet;
 
 public class DataFetch implements Runnable {
@@ -17,26 +21,30 @@ public class DataFetch implements Runnable {
 	PreparedStatement ps =  null;
 	ResultSet rs = null;
 	Connection con = null;
-	
+	private static final Logger log = LogManager.getLogger(DataFetch.class.getName());
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
-			
-			
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, low);
 			ps.setInt(2,  high);
 			rs = ps.executeQuery();
 			
-			recordSets.add(new RecordSet(rs));
+			RecordSet recordSet = new RecordSet(rs);
+			recordSets.add(recordSet);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (rs != null) {
-				
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			if (ps != null) {
 				try {

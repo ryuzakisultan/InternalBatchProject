@@ -12,6 +12,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.batchproject.config.Config;
 import com.batchproject.data.RecordSet;
 import com.batchproject.datawrite.DataWrite;
@@ -27,8 +30,9 @@ public class Main {
 	static String sql = "select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;";
 	static String outputFileName = "output.csv";
 	private static BlockingQueue<RecordSet> recordSets = new LinkedBlockingQueue<RecordSet>();
-	
+	private static final Logger log = LogManager.getLogger(Main.class.getName());
 	public static void main(String[] args) {
+		log.info("Initializing LinkedBlockingQueue buffer");
 		try {
 			writer = new PrintWriter(new File(outputFileName));
 		} catch (FileNotFoundException e) {

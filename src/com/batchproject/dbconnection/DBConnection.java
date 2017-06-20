@@ -3,19 +3,21 @@ package com.batchproject.dbconnection;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
+import com.batchproject.Main;
 import com.batchproject.config.Config;
 
 public final class DBConnection {
 	//Database driver and url
 	private static final String JDBC_DRIVER;
-	//TODO make connection string generic, make constructure
 	private static final String DB_URL;
 	private static DataSource datasource;
 	private static Connection con = null;
-	
+	private static final Logger log = LogManager.getLogger(DBConnection.class.getName());
 	
 	
 	static {
