@@ -37,7 +37,7 @@ public final class DBConnection {
 		p.setUrl(DB_URL);
 		p.setValidationQuery("SELECT 1");
 		p.setMaxActive(1000);
-		p.setInitialSize(100);
+		p.setInitialSize(5);
 		datasource.setPoolProperties(p);
 	}
 	

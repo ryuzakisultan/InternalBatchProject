@@ -8,6 +8,8 @@ import java.util.concurrent.BlockingQueue;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 
 import com.batchproject.data.RecordSet;
 
@@ -21,6 +23,7 @@ public class DataFetch implements Runnable {
 	ResultSet rs = null;
 	Connection con = null;
 	private static final Logger log = LogManager.getLogger(DataFetch.class.getName());
+	private static final Marker SQL_MARKER = MarkerManager.getMarker("SQL");
 	@Override
 	public void run() {
 		//TODO run comments
@@ -28,6 +31,11 @@ public class DataFetch implements Runnable {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, low);
 			ps.setInt(2,  high);
+			
+			String formatedSQL = sql.replace("?","{}");
+			
+			log.info(SQL_MARKER,formatedSQL,low,high);
+			
 			rs = ps.executeQuery();
 			
 			RecordSet recordSet = new RecordSet(rs);

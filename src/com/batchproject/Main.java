@@ -40,7 +40,6 @@ public class Main {
 		int lower = 0;
 		int upper = 0;
 		
-		
 		try {
 			batchSize = Config.getIntValue("batchsize");
 			threadPoolSize = Config.getIntValue("threadpoolsize");
@@ -51,7 +50,6 @@ public class Main {
 		}
 
 		totalBatches = (int) Math.ceil((double) (upper - lower + 1) / batchSize);
-		// TODO Auto-generated method stub
 
 		// TODO Initiate writedata and fetchthreads size;
 		ExecutorService executor = Executors.newFixedThreadPool(threadPoolSize);
