@@ -1,6 +1,5 @@
 package com.batchproject.data;
 
-import java.io.PrintWriter;
 import java.sql.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -9,15 +8,10 @@ import org.apache.logging.log4j.Logger;
 public class TransRequestObject {
 	private static final Logger log = LogManager.getLogger(TransRequestObject.class.getName());
 	
-	int traceAuditNo;
-	String cardPrgID;
-	Date transDate;
-	public TransRequestObject(int traceAuditNo, String cardPrgID, Date transDate) {
-		super();
-		this.traceAuditNo = traceAuditNo;
-		this.cardPrgID = cardPrgID;
-		this.transDate = transDate;
-	}
+	private int traceAuditNo = 0;
+	private String cardPrgID = null;
+	private Date transDate = null;
+	
 	public int getTraceAuditNo() {
 		return traceAuditNo;
 	}
@@ -28,7 +22,14 @@ public class TransRequestObject {
 		return transDate;
 	}
 	
-	public void writeToFile(PrintWriter writer) {
-		writer.println(traceAuditNo + "," + cardPrgID + "," + transDate);
+	public void setTraceAuditNo(int traceAuditNo) {
+		this.traceAuditNo = traceAuditNo;
 	}
+	public void setCardPrgID(String cardPrgID) {
+		this.cardPrgID = cardPrgID;
+	}
+	public void setTransDate(Date transDate) {
+		this.transDate = transDate;
+	}
+	
 }

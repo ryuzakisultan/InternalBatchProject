@@ -20,8 +20,11 @@ public class RecordSet {
 	public void bufferData(ResultSet rs) {
 		try {
 			while (rs.next()) {
-				TransRequestObject o = new TransRequestObject(rs.getInt(1),rs.getString(2),rs.getDate(3));
-				transRequestObjects.add(o);
+				TransRequestObject transRequestObject = new TransRequestObject();
+				transRequestObject.setTraceAuditNo(rs.getInt(1));
+				transRequestObject.setCardPrgID(cardPrgID);
+				transRequestObject.setTransDate(transDate);
+				transRequestObjects.add(transRequestObject);
 			}
 		} catch (SQLException e) {
 			log.error(e,e);

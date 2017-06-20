@@ -29,7 +29,6 @@ public final class DBConnection {
 			log.error(e,e);
 		}
 	}
-	
 	static {
 		datasource = new DataSource();
 		PoolProperties p = new PoolProperties();
@@ -37,11 +36,12 @@ public final class DBConnection {
 		p.setUrl(DB_URL);
 		p.setValidationQuery("SELECT 1");
 		p.setMaxActive(1000);
-		p.setInitialSize(5);
+		p.setInitialSize(10);
 		datasource.setPoolProperties(p);
 	}
 	
 	private DBConnection() {
+		
 	}
 	
 	public static Connection getConnection() {

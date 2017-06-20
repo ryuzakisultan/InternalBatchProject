@@ -29,43 +29,46 @@ public class Main {
 	static String outputFileName = "output.csv";
 	private static BlockingQueue<RecordSet> recordSets = new LinkedBlockingQueue<RecordSet>();
 	private static final Logger log = LogManager.getLogger(Main.class.getName());
+
 	public static void main(String[] args) {
-		
+
 		try {
 			writer = new PrintWriter(new File(outputFileName));
-		} catch (FileNotFoundException e) {
-			log.error(e,e);
-		}
 
-		int lower = 0;
-		int upper = 0;
-		
-		try {
+			int lower = 0;
+			int upper = 0;
+
 			batchSize = Config.getIntValue("batchsize");
 			threadPoolSize = Config.getIntValue("threadpoolsize");
 			lower = Config.getIntValue("lower");
 			upper = Config.getIntValue("upper");
-		} catch (ConfigPropertyNotFound e) {
-			log.error(e,e);
-		}
 
-		totalBatches = (int) Math.ceil((double) (upper - lower + 1) / batchSize);
-
-		// TODO Initiate writedata and fetchthreads size;
-		ExecutorService executor = Executors.newFixedThreadPool(threadPoolSize);
-		int start = lower;
-		int end = lower+batchSize;
-		for (int i = 0; i < totalBatches; ++i) {
-			Connection con = DBConnection.getConnection();
-			executor.execute(new DataFetch(con,recordSets,sql,start,Math.min(end,upper)));
-			start = end + 1;
-			end = end + batchSize;
-			executor.execute(new DataWrite(recordSets, writer));
-		}
-		executor.shutdown();
-		while (!executor.isTerminated()) {
 			
+
+			// TODO Initiate writedata and fetchthreads size;
+			ExecutorService executor = Executors.newFixedThreadPool(threadPoolSize);
+			
+			totalBatches = (int) Math.ceil((double) (upper - lower) / batchSize);
+			
+			
+			int start = lower;
+			int end = lower + batchSize;
+			for (int i = 0; i < totalBatches; ++i) {
+				Connection con = DBConnection.getConnection();
+				executor.execute(new DataFetch(con, recordSets, sql, start, Math.min(end, upper)));
+				start = end + 1;
+				end = end + batchSize;
+				executor.execute(new DataWrite(recordSets, writer));
+			}
+			/*executor.shutdown();
+			while (!executor.isTerminated()) {
+
+			}*/
+			writer.close();
+		} catch (ConfigPropertyNotFound e) {
+			log.error(e, e);
+		} catch (FileNotFoundException e) {
+			log.error(e, e);
 		}
-		writer.close();
 	}
 }
