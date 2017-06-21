@@ -1,4 +1,4 @@
-package com.batchproject.config;
+package com.batchproject.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.batchproject.exceptions.ConfigPropertyNotFound;
+import com.batchproject.excep.ConfigPropertyNotFound;
 
 public final class Config {
 	private static Properties prop = new Properties();
@@ -50,7 +50,6 @@ public final class Config {
 
 	public static int getIntValue(String key) throws ConfigPropertyNotFound{
 		int value = 0;
-
 		try {
 			String s = prop.getProperty(key);
 			if (s == null) {

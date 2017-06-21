@@ -1,12 +1,8 @@
-package com.batchproject.data;
+package com.batchproject.bean;
 
 import java.sql.Date;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-public class TransRequestObject {
-	private static final Logger log = LogManager.getLogger(TransRequestObject.class.getName());
+public class TransRequestObjectInfo {
 	
 	private int traceAuditNo = 0;
 	private String cardPrgID = null;

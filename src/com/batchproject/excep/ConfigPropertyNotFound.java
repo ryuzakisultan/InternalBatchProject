@@ -1,4 +1,4 @@
-package com.batchproject.exceptions;
+package com.batchproject.excep;
 
 @SuppressWarnings("serial")
 public final class ConfigPropertyNotFound extends Exception {

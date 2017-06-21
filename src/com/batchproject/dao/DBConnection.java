@@ -1,4 +1,4 @@
-package com.batchproject.dbconnection;
+package com.batchproject.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -7,8 +7,8 @@ import org.apache.logging.log4j.Logger;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 
-import com.batchproject.config.Config;
-import com.batchproject.exceptions.ConfigPropertyNotFound;
+import com.batchproject.excep.ConfigPropertyNotFound;
+import com.batchproject.util.Config;
 
 public final class DBConnection {
 	//Database driver and url
