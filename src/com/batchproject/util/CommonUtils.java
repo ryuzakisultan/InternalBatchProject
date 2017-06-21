@@ -22,7 +22,7 @@ public final class CommonUtils {
 			dbdriver = Config.getStringValue("dbdriver");
 			dbURL = Config.getStringValue("url");
 			user = Config.getStringValue("user");
-			password = Config.getStringValue("passwrod");
+			password = Config.getStringValue("password");
 			lowerTraceAuditNo = Config.getIntValue("lowertraceauditno");
 			upperTraceAuditNo = Config.getIntValue("uppertraceauditno");
 			threadPoolSize = Config.getIntValue("threadpoolsize");

@@ -16,8 +16,8 @@ import com.batchproject.bean.TransRequestObjectInfo;
 public class DataFetchTask implements Callable<List<TransRequestObjectInfo>> {
 	List<TransRequestObjectInfo> recordSet = null;
 	private String queryFetchTransRequestsData = null;
-	private int low;
-	private int high;
+	private int lowerTraceAuditNo;
+	private int upperTraceAuditNo;
 	private PreparedStatement preparedStatement =  null;
 	private ResultSet resultSet = null;
 	private Connection connection = null;
@@ -28,8 +28,8 @@ public class DataFetchTask implements Callable<List<TransRequestObjectInfo>> {
 			recordSet = new ArrayList<TransRequestObjectInfo>();
 			
 			preparedStatement = connection.prepareStatement(queryFetchTransRequestsData);
-			preparedStatement.setInt(1, low);
-			preparedStatement.setInt(2,  high);
+			preparedStatement.setInt(1, lowerTraceAuditNo);
+			preparedStatement.setInt(2,  upperTraceAuditNo);
 			
 			log.info(queryFetchTransRequestsData);
 			
@@ -42,6 +42,7 @@ public class DataFetchTask implements Callable<List<TransRequestObjectInfo>> {
 				transRequestObject.setTransDate(resultSet.getDate(3));
 				recordSet.add(transRequestObject);
 			}
+			System.out.println("batch fetched");
 		} catch (SQLException e) {
 			log.error(e,e);
 		} finally {
@@ -82,12 +83,12 @@ public class DataFetchTask implements Callable<List<TransRequestObjectInfo>> {
 		}
 	}
 
-	public DataFetchTask(Connection con,String sql, int low, int high) {
+	public DataFetchTask(Connection connection,String queryFetchTransRequestsData, int lowerTraceAuditNo, int upperTraceAuditNo) {
 		super();
-		this.connection = con;
-		this.queryFetchTransRequestsData = sql;
-		this.low = low;
-		this.high = high;
+		this.connection = connection;
+		this.queryFetchTransRequestsData = queryFetchTransRequestsData;
+		this.lowerTraceAuditNo = lowerTraceAuditNo;
+		this.upperTraceAuditNo = upperTraceAuditNo;
 	}
 	
 }

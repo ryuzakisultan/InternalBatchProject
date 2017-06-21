@@ -18,26 +18,29 @@ public class DataWriteTask implements Runnable {
 	List<Future<List<TransRequestObjectInfo>>> resultSets = null;
 	private static final Logger log = LogManager.getLogger(DataWriteTask.class.getName());
 	PrintWriter writer;
-	
+
 	public DataWriteTask(List<Future<List<TransRequestObjectInfo>>> resultSets) throws IOException {
 		super();
 		writer = new PrintWriter(new BufferedWriter(new FileWriter(CommonUtils.outputFileName)));
 		this.resultSets = resultSets;
 	}
-	
+
 	@Override
 	public void run() {
-		for(Future<List<TransRequestObjectInfo>> futureResultSet : resultSets) {
-			try {
+		try {
+			System.out.println("result set size: " + resultSets.size());
+			for (Future<List<TransRequestObjectInfo>> futureResultSet : resultSets) {
 				List<TransRequestObjectInfo> resultSet = futureResultSet.get();
-				
-				for (TransRequestObjectInfo transRequestObjectInfo: resultSet) {
-					
+				for (TransRequestObjectInfo transRequestObjectInfo : resultSet) {
+					writer.println(transRequestObjectInfo.getTraceAuditNo() + ","
+							+ transRequestObjectInfo.getCardPrgID() + "," + transRequestObjectInfo.getTransDate());
 				}
-				
-			} catch (InterruptedException | ExecutionException e) {
-				log.error(e,e);
 			}
+		} catch (InterruptedException | ExecutionException e) {
+			log.error(e, e);
+		} finally {
+			System.out.println("Result set clsoed");
+			writer.close();
 		}
 	}
 }

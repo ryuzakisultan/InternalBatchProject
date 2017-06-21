@@ -1,0 +1,68 @@
+[2017-06-21 16:35:35,670][   ][ INFO][pool-2-thread-5][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:35,670][   ][ INFO][pool-2-thread-3][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:35,670][   ][ INFO][pool-2-thread-4][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:35,670][   ][ INFO][pool-2-thread-2][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:35,670][   ][ INFO][pool-2-thread-1][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:35,670][   ][ INFO][pool-2-thread-8][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:35,670][   ][ INFO][pool-2-thread-6][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:35,670][   ][ INFO][pool-2-thread-9][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:35,670][   ][ INFO][pool-2-thread-7][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,419][   ][ INFO][pool-2-thread-9][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,419][   ][ INFO][pool-2-thread-8][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,419][   ][ INFO][pool-2-thread-5][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,419][   ][ INFO][pool-2-thread-7][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,419][   ][ INFO][pool-2-thread-2][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,419][   ][ INFO][pool-2-thread-6][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,419][   ][ INFO][pool-2-thread-4][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,419][   ][ INFO][pool-2-thread-1][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,419][   ][ INFO][pool-2-thread-3][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:35:44,435][   ][ERROR][pool-2-thread-1][DataFetchTask] - java.sql.SQLException: System error java.lang.IllegalStateException: Current state = FLUSHED, new state = CODING_END
+java.sql.SQLException: System error java.lang.IllegalStateException: Current state = FLUSHED, new state = CODING_END
+	at com.informix.util.IfxErrMsg.buildException(IfxErrMsg.java:474)
+	at com.informix.util.IfxErrMsg.getSQLException(IfxErrMsg.java:443)
+	at com.informix.util.IfxErrMsg.getSQLException(IfxErrMsg.java:492)
+	at com.informix.jdbc.IfxRowColumn.loadColumnData(IfxRowColumn.java:331)
+	at com.informix.jdbc.IfxSqli.loadColumnData(IfxSqli.java:4179)
+	at com.informix.jdbc.IfxResultSet.getValue(IfxResultSet.java:630)
+	at com.informix.jdbc.IfxResultSet.getValue(IfxResultSet.java:586)
+	at com.informix.jdbc.IfxResultSet.getString(IfxResultSet.java:660)
+	at com.batchproject.bl.DataFetchTask.call(DataFetchTask.java:41)
+	at com.batchproject.bl.DataFetchTask.call(DataFetchTask.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+[2017-06-21 16:36:55,892][   ][ INFO][pool-2-thread-3][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:36:55,892][   ][ INFO][pool-2-thread-4][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:36:55,892][   ][ INFO][pool-2-thread-9][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:36:55,892][   ][ INFO][pool-2-thread-5][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:36:55,892][   ][ INFO][pool-2-thread-2][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:36:55,892][   ][ INFO][pool-2-thread-7][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:36:55,892][   ][ INFO][pool-2-thread-8][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:36:55,892][   ][ INFO][pool-2-thread-6][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:36:55,892][   ][ INFO][pool-2-thread-1][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,098][   ][ INFO][pool-2-thread-7][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,098][   ][ INFO][pool-2-thread-4][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,098][   ][ INFO][pool-2-thread-1][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,098][   ][ INFO][pool-2-thread-9][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,098][   ][ INFO][pool-2-thread-3][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,098][   ][ INFO][pool-2-thread-6][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,098][   ][ INFO][pool-2-thread-2][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,098][   ][ INFO][pool-2-thread-8][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,098][   ][ INFO][pool-2-thread-5][DataFetchTask] - select trace_audit_no, card_prg_id, trans_date from trans_requests where trace_audit_no >= ? and trace_audit_no <= ?;
+[2017-06-21 16:37:17,114][   ][ERROR][pool-2-thread-1][DataFetchTask] - java.sql.SQLException: System error java.lang.IllegalStateException: Current state = FLUSHED, new state = CODING_END
+java.sql.SQLException: System error java.lang.IllegalStateException: Current state = FLUSHED, new state = CODING_END
+	at com.informix.util.IfxErrMsg.buildException(IfxErrMsg.java:474)
+	at com.informix.util.IfxErrMsg.getSQLException(IfxErrMsg.java:443)
+	at com.informix.util.IfxErrMsg.getSQLException(IfxErrMsg.java:492)
+	at com.informix.jdbc.IfxRowColumn.loadColumnData(IfxRowColumn.java:331)
+	at com.informix.jdbc.IfxSqli.loadColumnData(IfxSqli.java:4179)
+	at com.informix.jdbc.IfxResultSet.getValue(IfxResultSet.java:630)
+	at com.informix.jdbc.IfxResultSet.getValue(IfxResultSet.java:586)
+	at com.informix.jdbc.IfxResultSet.getString(IfxResultSet.java:660)
+	at com.batchproject.bl.DataFetchTask.call(DataFetchTask.java:41)
+	at com.batchproject.bl.DataFetchTask.call(DataFetchTask.java:1)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)

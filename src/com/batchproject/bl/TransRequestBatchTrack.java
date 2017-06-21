@@ -9,7 +9,7 @@ public class TransRequestBatchTrack {
 	
 	public TransRequestBatchTrack() {
 		currentLowerTraceAuditNumber = CommonUtils.lowerTraceAuditNo;
-		currentUpperTraceAuditNumber = Math.min(CommonUtils.batchSize,CommonUtils.upperTraceAuditNo);
+		currentUpperTraceAuditNumber = Math.min(CommonUtils.lowerTraceAuditNo + CommonUtils.batchSize,CommonUtils.upperTraceAuditNo);
 	}
 	
 	public boolean nextBatch() {
