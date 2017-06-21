@@ -19,6 +19,11 @@ public final class DBConnection {
 	private static final Logger log = LogManager.getLogger(DBConnection.class.getName());
 	
 	static {
+		initializeParams();
+		initializeDataSource();
+	}
+	
+	private static void initializeParams() {
 		try {
 			JDBC_DRIVER = Config.getStringValue("driver");
 			StringBuilder url = new StringBuilder(Config.getStringValue("url"));
@@ -29,7 +34,8 @@ public final class DBConnection {
 			log.error(e,e);
 		}
 	}
-	static {
+	
+	private static void initializeDataSource() {
 		datasource = new DataSource();
 		PoolProperties p = new PoolProperties();
 		p.setDriverClassName(JDBC_DRIVER);
@@ -37,7 +43,7 @@ public final class DBConnection {
 		p.setValidationQuery("SELECT 1");
 		p.setMaxActive(1000);
 		p.setInitialSize(10);
-		datasource.setPoolProperties(p);
+		datasource.setPoolProperties(p);=
 	}
 	
 	private DBConnection() {
