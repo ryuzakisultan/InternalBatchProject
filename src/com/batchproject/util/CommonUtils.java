@@ -13,7 +13,11 @@ public final class CommonUtils {
 	public static int threadPoolSize = 0;
 	public static String outputFileName = null;
 	
-	static {
+	private CommonUtils() {
+		
+	}
+	
+	public static void init() {
 		try {
 			batchSize = Config.getIntValue("batchsize");
 			dbdriver = Config.getStringValue("dbdriver");
