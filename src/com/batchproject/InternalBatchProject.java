@@ -25,7 +25,6 @@ public class InternalBatchProject {
 	private static final Logger log = LogManager.getLogger(InternalBatchProject.class.getName());
 
 	public static void main(String[] args) {
-
 		try {
 			ExecutorService executor = Executors.newFixedThreadPool(CommonUtils.threadPoolSize);
 			TransRequestBatchTrack transRequestBatchTrack = new TransRequestBatchTrack();

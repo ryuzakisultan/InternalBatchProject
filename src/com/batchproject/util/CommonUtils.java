@@ -16,8 +16,7 @@ public final class CommonUtils {
 	private CommonUtils() {
 		
 	}
-	
-	public static void init() {
+	static {
 		try {
 			batchSize = Config.getIntValue("batchsize");
 			dbdriver = Config.getStringValue("dbdriver");
@@ -32,5 +31,4 @@ public final class CommonUtils {
 			e.printStackTrace();
 		}
 	}
-	
 }
