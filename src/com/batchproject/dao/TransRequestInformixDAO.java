@@ -19,15 +19,17 @@ class TransRequestInformixDAO extends TransRequestsDAO {
 	
 	private static final Logger log = LogManager.getLogger(TransRequestInformixDAO.class.getName());
 
-	
 	public List<TransRequestObjectInfo> queuryTransRequests(int lowerTraceAuditNo, int upperTraceAuditNo) {
 		List<TransRequestObjectInfo> recordSet = new ArrayList<TransRequestObjectInfo>();
 		try {
+			log.info("Getting InformixDatabase connection");
 			connection = InformixDatabase.getConnection();
+			log.info("Creating prepared statement");
 			preparedStatement = connection.prepareStatement(queryFetchTransRequestsData);
+			log.info("Setting parameters in preparedStatment");
 			preparedStatement.setInt(1, lowerTraceAuditNo);
 			preparedStatement.setInt(2,  upperTraceAuditNo);
-			log.info(queryFetchTransRequestsData);
+			log.info("Executing: " + queryFetchTransRequestsData);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				TransRequestObjectInfo transRequestObject = new TransRequestObjectInfo();
@@ -39,9 +41,12 @@ class TransRequestInformixDAO extends TransRequestsDAO {
 		} catch (SQLException e) {
 			log.error(e,e);
 		} finally {
+			log.info("Closing result set");
 			closeResultSet(resultSet);
-			closeConnection(connection);
+			log.info("Closing prepared statement");
 			closePreparedStatement(preparedStatement);
+			log.info("Closing connection");
+			closeConnection(connection);
 		}
 		return recordSet;
 	}

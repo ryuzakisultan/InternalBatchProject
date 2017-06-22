@@ -28,6 +28,7 @@ public class DataWriteTask implements Runnable {
 	@Override
 	public void run() {
 		try {
+			log.info("Writing result to CVS file");
 			for (Future<List<TransRequestObjectInfo>> futureResultSet : resultSets) {
 				List<TransRequestObjectInfo> resultSet = futureResultSet.get();
 				for (TransRequestObjectInfo transRequestObjectInfo : resultSet) {

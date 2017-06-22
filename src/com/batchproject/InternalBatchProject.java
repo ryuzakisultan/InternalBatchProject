@@ -22,14 +22,19 @@ public class InternalBatchProject {
 
 	public static void main(String[] args) {		
 		try {
+			log.info("Initializing Thread Executor");
 			ExecutorService executor = Executors.newFixedThreadPool(CommonUtils.threadPoolSize);
 			TransRequestBatchTrack transRequestBatchTrack = new TransRequestBatchTrack();
+			
+			log.info("Initializing Data Fetch threads");
 			while(transRequestBatchTrack.nextBatch()) {
 				DataFetchTask dataFetchTask =  new DataFetchTask(transRequestBatchTrack.getLowerTraceAuditNumber(), transRequestBatchTrack.getUpperTraceAuditNumber());
 				Future<List<TransRequestObjectInfo>> futureResultSet = executor.submit(dataFetchTask);
 				futureRecordSets.add(futureResultSet);
 			}
 			executor.shutdown();
+			
+			log.info("Starting DataWriteTask");
 			new Thread(new DataWriteTask(futureRecordSets)).start();
 			
 		} catch (IOException e) {

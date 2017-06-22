@@ -1,5 +1,8 @@
 package com.batchproject.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.batchproject.excep.ConfigPropertyNotFound;
 
 public final class CommonUtils {
@@ -13,11 +16,15 @@ public final class CommonUtils {
 	public static int threadPoolSize = 0;
 	public static String outputFileName = null;
 	
+	private static final Logger log = LogManager.getLogger(CommonUtils.class.getName());
+	
 	private CommonUtils() {
 		
 	}
 	static {
 		try {
+			log.info("Initializing constants");
+			
 			batchSize = Config.getIntValue("batchsize");
 			dbdriver = Config.getStringValue("dbdriver");
 			dbURL = Config.getStringValue("url");
