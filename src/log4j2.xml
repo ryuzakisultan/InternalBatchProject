@@ -9,7 +9,7 @@
 			filePattern="async.log-%i" immediateFlush="false"
 			append="true"> <!--  for backup --> 
 			<PatternLayout>
-				<Pattern>[%d{DEFAULT}][%3marker][%5p][%t][%c{1}] - %m%n%ex</Pattern>
+				<Pattern>[%d{DEFAULT}][%5p][%t][%c{1}] - %m%n%ex</Pattern>
 			</PatternLayout>
 			
 			
@@ -38,7 +38,7 @@
 		</asyncRoot>
 		
 		<asyncLogger name="com.batchproject" level="INFO"
-			additivity="false" includeLocation="true">
+			additivity="true" includeLocation="true">
 			<AppenderRef ref="ROLLING" /> 
 		</asyncLogger>
 	</Loggers>

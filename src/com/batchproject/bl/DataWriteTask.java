@@ -28,7 +28,6 @@ public class DataWriteTask implements Runnable {
 	@Override
 	public void run() {
 		try {
-			System.out.println("result set size: " + resultSets.size());
 			for (Future<List<TransRequestObjectInfo>> futureResultSet : resultSets) {
 				List<TransRequestObjectInfo> resultSet = futureResultSet.get();
 				for (TransRequestObjectInfo transRequestObjectInfo : resultSet) {
@@ -39,7 +38,6 @@ public class DataWriteTask implements Runnable {
 		} catch (InterruptedException | ExecutionException e) {
 			log.error(e, e);
 		} finally {
-			System.out.println("Result set clsoed");
 			writer.close();
 		}
 	}
