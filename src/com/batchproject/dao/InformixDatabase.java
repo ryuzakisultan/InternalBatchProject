@@ -53,12 +53,14 @@ class InformixDatabase {
 		datasource.setPoolProperties(p);
 	}
 
-	public static synchronized Connection getConnection() {
-		try {
-			connection = datasource.getConnection();
-			connection.setAutoCommit(false);
-		} catch (SQLException e) {
-			log.error(e, e);
+	public static Connection getConnection() {
+		synchronized (connection) {
+			try {
+				connection = datasource.getConnection();
+				connection.setAutoCommit(false);
+			} catch (SQLException e) {
+				log.error(e, e);
+			}
 		}
 		return connection;
 	}

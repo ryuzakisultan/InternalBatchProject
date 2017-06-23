@@ -13,14 +13,13 @@ import org.apache.logging.log4j.Logger;
 import com.batchproject.bean.TransRequestObjectInfo;
 
 class TransRequestInformixDAO extends TransRequestsDAO {
-	private PreparedStatement preparedStatement = null;
-	private ResultSet resultSet = null;
-	private Connection connection = null;
-
 	private static final Logger log = LogManager.getLogger(TransRequestInformixDAO.class.getName());
 
 	public List<TransRequestObjectInfo> queuryTransRequests(int lowerTraceAuditNo, int upperTraceAuditNo) {
 		List<TransRequestObjectInfo> recordSet = new ArrayList<TransRequestObjectInfo>();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		Connection connection = null;
 		try {
 			log.info("Getting InformixDatabase connection");
 			connection = InformixDatabase.getConnection();
@@ -51,7 +50,7 @@ class TransRequestInformixDAO extends TransRequestsDAO {
 		return recordSet;
 	}
 
-	private void closeResultSet(ResultSet recordSet) {
+	private void closeResultSet(ResultSet resultSet) {
 		if (resultSet != null) {
 			try {
 				resultSet.close();

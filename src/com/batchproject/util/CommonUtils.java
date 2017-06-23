@@ -15,12 +15,13 @@ public final class CommonUtils {
 	public static int upperTraceAuditNo = 0;
 	public static int threadPoolSize = 0;
 	public static String outputFileName = null;
-	
+
 	private static final Logger log = LogManager.getLogger(CommonUtils.class.getName());
-	
+
 	private CommonUtils() {
-		
+
 	}
+
 	static {
 		try {
 			log.info("Initializing constants");
@@ -34,7 +35,7 @@ public final class CommonUtils {
 			threadPoolSize = Config.getIntValue("threadpoolsize");
 			outputFileName = Config.getStringValue("outputfilename");
 		} catch (ConfigPropertyNotFound e) {
-			e.printStackTrace();
+			log.error(e, e);
 		}
 	}
 }
