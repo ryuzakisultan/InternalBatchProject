@@ -24,7 +24,6 @@ public final class CommonUtils {
 	static {
 		try {
 			log.info("Initializing constants");
-			
 			batchSize = Config.getIntValue("batchsize");
 			dbdriver = Config.getStringValue("dbdriver");
 			dbURL = Config.getStringValue("url");

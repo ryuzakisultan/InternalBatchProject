@@ -14,7 +14,7 @@ public abstract class TransRequestsDAO {
 	private static final Logger log = LogManager.getLogger(TransRequestsDAO.class.getName());
 
 	abstract public List<TransRequestObjectInfo> queuryTransRequests(int lowerTraceAuditNo, int upperTraceAuditNo);
-	
+
 	public static TransRequestsDAO getInstance(String driver) {
 		if (driver != null && driver.equals(JDBC_DRIVER)) {
 			log.info("Creating TransRequestInformixDAO instance");

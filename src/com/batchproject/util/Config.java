@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.stream.Stream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,11 +14,10 @@ import com.batchproject.excep.ConfigPropertyNotFound;
 public final class Config {
 	private static Properties prop = new Properties();
 	private static InputStream input = null;
-	
+
 	private static final Logger log = LogManager.getLogger(Config.class.getName());
-	
+
 	private Config() {
-		// Can't make instance
 	}
 
 	static {
@@ -25,14 +25,18 @@ public final class Config {
 			input = new FileInputStream("config.properties");
 			prop.load(input);
 		} catch (IOException e) {
-			log.error(e,e);
+			log.error(e, e);
 		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (IOException e) {
-					log.error(e,e);
-				}
+			closeFileStream(input);
+		}
+	}
+
+	private static void closeFileStream(InputStream stream) {
+		if (stream != null) {
+			try {
+				stream.close();
+			} catch (IOException e) {
+				log.error(e, e);
 			}
 		}
 	}
@@ -43,12 +47,11 @@ public final class Config {
 		if (value == null) {
 			throw new ConfigPropertyNotFound(key);
 		}
-		//TODO Logging
 		return value;
 
 	}
 
-	public static int getIntValue(String key) throws ConfigPropertyNotFound{
+	public static int getIntValue(String key) throws ConfigPropertyNotFound {
 		int value = 0;
 		try {
 			String s = prop.getProperty(key);
@@ -56,9 +59,8 @@ public final class Config {
 				throw new ConfigPropertyNotFound(key);
 			}
 			value = Integer.parseInt(s);
-			// TODO Logging
 		} catch (NumberFormatException e) {
-			log.error(e,e);
+			log.error(e, e);
 		}
 		return value;
 	}

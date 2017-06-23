@@ -13,10 +13,10 @@ import org.apache.logging.log4j.Logger;
 import com.batchproject.bean.TransRequestObjectInfo;
 
 class TransRequestInformixDAO extends TransRequestsDAO {
-	private PreparedStatement preparedStatement =  null;
+	private PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 	private Connection connection = null;
-	
+
 	private static final Logger log = LogManager.getLogger(TransRequestInformixDAO.class.getName());
 
 	public List<TransRequestObjectInfo> queuryTransRequests(int lowerTraceAuditNo, int upperTraceAuditNo) {
@@ -28,7 +28,7 @@ class TransRequestInformixDAO extends TransRequestsDAO {
 			preparedStatement = connection.prepareStatement(queryFetchTransRequestsData);
 			log.info("Setting parameters in preparedStatment");
 			preparedStatement.setInt(1, lowerTraceAuditNo);
-			preparedStatement.setInt(2,  upperTraceAuditNo);
+			preparedStatement.setInt(2, upperTraceAuditNo);
 			log.info("Executing: " + queryFetchTransRequestsData);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
@@ -39,7 +39,7 @@ class TransRequestInformixDAO extends TransRequestsDAO {
 				recordSet.add(transRequestObject);
 			}
 		} catch (SQLException e) {
-			log.error(e,e);
+			log.error(e, e);
 		} finally {
 			log.info("Closing result set");
 			closeResultSet(resultSet);
@@ -50,32 +50,33 @@ class TransRequestInformixDAO extends TransRequestsDAO {
 		}
 		return recordSet;
 	}
+
 	private void closeResultSet(ResultSet recordSet) {
 		if (resultSet != null) {
 			try {
 				resultSet.close();
 			} catch (SQLException e) {
-				log.error(e,e);
+				log.error(e, e);
 			}
 		}
 	}
-	
+
 	private void closePreparedStatement(PreparedStatement preparedStatement) {
 		if (preparedStatement != null) {
 			try {
 				preparedStatement.close();
 			} catch (SQLException e) {
-				log.error(e,e);
+				log.error(e, e);
 			}
 		}
 	}
-	
+
 	private void closeConnection(Connection connection) {
 		if (connection != null) {
 			try {
 				connection.close();
 			} catch (SQLException e) {
-				log.error(e,e);
+				log.error(e, e);
 			}
 		}
 	}

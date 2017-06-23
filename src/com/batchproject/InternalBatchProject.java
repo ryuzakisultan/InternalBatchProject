@@ -20,25 +20,25 @@ public class InternalBatchProject {
 	private static List<Future<List<TransRequestObjectInfo>>> futureRecordSets = new ArrayList<Future<List<TransRequestObjectInfo>>>();
 	private static final Logger log = LogManager.getLogger(InternalBatchProject.class.getName());
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 		try {
 			log.info("Initializing Thread Executor");
 			ExecutorService executor = Executors.newFixedThreadPool(CommonUtils.threadPoolSize);
 			TransRequestBatchTrack transRequestBatchTrack = new TransRequestBatchTrack();
-			
 			log.info("Initializing Data Fetch threads");
-			while(transRequestBatchTrack.nextBatch()) {
-				DataFetchTask dataFetchTask =  new DataFetchTask(transRequestBatchTrack.getLowerTraceAuditNumber(), transRequestBatchTrack.getUpperTraceAuditNumber());
+			while (transRequestBatchTrack.nextBatch()) {
+				DataFetchTask dataFetchTask = new DataFetchTask(transRequestBatchTrack.getLowerTraceAuditNumber(),
+						transRequestBatchTrack.getUpperTraceAuditNumber());
 				Future<List<TransRequestObjectInfo>> futureResultSet = executor.submit(dataFetchTask);
 				futureRecordSets.add(futureResultSet);
 			}
 			executor.shutdown();
-			
+
 			log.info("Starting DataWriteTask");
 			new Thread(new DataWriteTask(futureRecordSets)).start();
-			
+
 		} catch (IOException e) {
 			log.error(e, e);
-		} 
+		}
 	}
 }

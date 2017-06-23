@@ -21,11 +21,11 @@ public class DataFetchTask implements Callable<List<TransRequestObjectInfo>> {
 		log.info("Set parameters for fetchTransRequestsData query");
 		return transRequestsDAO.queuryTransRequests(lowerTraceAuditNo, upperTraceAuditNo);
 	}
-	
+
 	public DataFetchTask(int lowerTraceAuditNo, int upperTraceAuditNo) {
 		super();
 		this.lowerTraceAuditNo = lowerTraceAuditNo;
 		this.upperTraceAuditNo = upperTraceAuditNo;
 	}
-	
+
 }

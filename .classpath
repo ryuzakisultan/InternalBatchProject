@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="lib/tomcat-jdbc.jar" sourcepath="C:/Users/sahmed07/AppData/Local/Temp/decompiler/source/tomcat-jdbc-8.0.26-sources.jar"/>
 	<classpathentry kind="lib" path="lib/tomcat-juli.jar"/>
 	<classpathentry kind="lib" path="lib/disruptor-3.3.2.jar"/>
-	<classpathentry kind="lib" path="lib/log4j-api-2.3.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-api-2.3.jar" sourcepath="C:/Users/sahmed07/AppData/Local/Temp/decompiler/source/log4j-api-2.3-sources.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-core-2.3.jar"/>
 	<classpathentry kind="lib" path="lib/ifxjdbc.jar"/>
 	<classpathentry kind="lib" path="lib/ifxlang.jar"/>
